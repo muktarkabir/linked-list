@@ -37,7 +37,19 @@ class LinkedList {
       return temp;
     }
   }
-  at(){};
+  at(index) {
+    if (index >= this.size || index < 0) {
+      throw new Error("Index out of range");
+    } else {
+      let count = 0;
+      let temp = this.head;
+      while (count < index) {
+        temp = temp.nextNode;
+        count++;
+      }
+      return temp;
+    }
+  }
   pop(){};
   contains(){};
   find(){};
