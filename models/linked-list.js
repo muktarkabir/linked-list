@@ -94,8 +94,21 @@ class LinkedList {
     linkedListString += " null ";
     return linkedListString;
   }
-  insertAt(value, index) {}
+  insertAt(value, index) {
+    if (index == 0) this.prepend(value);
+    if (index == this.size - 1) this.append(value);
+    if (index >= this.size || index < 0) throw new Error("Index out of range");
+    let count = 0;
+    let temp = this.head;
+    let previousNode;
+    while (count < index) {
+      previousNode = temp;
+      temp = temp.nextNode;
+      count++;
+    }
+    previousNode.nextNode = new Node(value, temp);
+  }
   removeAt(index) {}
 }
 
-export { LinkedList as default};
+export { LinkedList as default };
