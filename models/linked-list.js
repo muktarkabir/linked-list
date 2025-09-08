@@ -64,7 +64,14 @@ class LinkedList {
       this.size--;
     }
   }
-  contains(){};
+   contains(value) {
+    let temp = this.head;
+    while (temp) {
+      if (temp.value == value) return true;
+      temp = temp.nextNode;  
+    }
+    return false;
+  }
   find(){};
   toString(){};
   insertAt(value,index){};
