@@ -20,9 +20,23 @@ class LinkedList {
     this.head = new Node(value, temp);
     this.size++;
   }
-  size(){}
-  head(){}
-  tail(){};
+   get size() {
+    return this.size;
+  }
+  head() {
+    return this.head;
+  }
+  tail() {
+    if (!this.head.nextNode) {
+      return this.head;
+    } else {
+      let temp = this.head;
+      while (temp.nextNode) {
+        temp = temp.nextNode;
+      }
+      return temp;
+    }
+  }
   at(){};
   pop(){};
   contains(){};
