@@ -50,7 +50,20 @@ class LinkedList {
       return temp;
     }
   }
-  pop(){};
+   pop() {
+    if (!this.head.nextNode) {
+      this.head = null;
+      this.size = 0;
+    } else {
+      let temp = this.head;
+      while (temp.nextNode.nextNode) {
+        temp = temp.nextNode;
+      }
+
+      temp.nextNode = null;
+      this.size--;
+    }
+  }
   contains(){};
   find(){};
   toString(){};
