@@ -82,7 +82,17 @@ class LinkedList {
     }
     return null;
   }
-  toString(){};
+    toString() {
+      let linkedListString = this.head ? `( ${this.head.value} ) -> ` : ' null ';
+      if (!this.head) return linkedListString;
+      let temp = this.head.nextNode;
+    while (temp) {
+        linkedListString += `( ${temp.value} ) -> `;
+        temp = temp.nextNode;
+    }
+    linkedListString += ' null ';
+    return linkedListString;
+  }
   insertAt(value,index){};
   removeAt(index){};
 }
