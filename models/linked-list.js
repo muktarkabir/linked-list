@@ -3,7 +3,7 @@ class LinkedList {
   constructor(head = null) {
     this.head = head;
   }
-  size = 0;
+  _size = 0;
   append(value) {
     if (!this.head) {
       this.head = new Node(value);
@@ -14,15 +14,15 @@ class LinkedList {
       }
       temp.nextNode = new Node(value);
     }
-    this.size++;
+    this._size++;
   }
   prepend(value) {
     let temp = this.head;
     this.head = new Node(value, temp);
-    this.size++;
+    this._size++;
   }
   get size() {
-    return this.size;
+    return this._size;
   }
   head() {
     return this.head;
@@ -39,7 +39,7 @@ class LinkedList {
     }
   }
   at(index) {
-    if (index >= this.size || index < 0) {
+    if (index >= this._size || index < 0) {
       throw new Error("Index out of range");
     } else {
       let count = 0;
@@ -52,9 +52,11 @@ class LinkedList {
     }
   }
   pop() {
+    if (!this.head) return;
     if (!this.head.nextNode) {
       this.head = null;
-      this.size = 0;
+      this._size = 0;
+      return;
     } else {
       let temp = this.head;
       while (temp.nextNode.nextNode) {
@@ -62,7 +64,7 @@ class LinkedList {
       }
 
       temp.nextNode = null;
-      this.size--;
+      this._size--;
     }
   }
   contains(value) {
@@ -83,6 +85,35 @@ class LinkedList {
     }
     return null;
   }
+  insertAt(value, index) {
+    if (index >= this._size || index < 0) throw new Error("Index out of range");
+    if (index == 0) return this.prepend(value);
+    if (index == this._size - 1) return this.append(value);
+    let count = 0;
+    let temp = this.head;
+    let previousNode;
+    while (count < index) {
+      previousNode = temp;
+      temp = temp.nextNode;
+      count++;
+    }
+    previousNode.nextNode = new Node(value, temp);
+    this._size++;
+  }
+  removeAt(index) {
+    if (index >= this._size || index < 0) throw new Error("Index out of range");
+    let temp = this.head;
+    let previousNode;
+    let count = 0;
+
+    while (count < index) {
+      previousNode = temp;
+      temp = temp.nextNode;
+      count++;
+    }
+    previousNode ? (previousNode.nextNode = temp.nextNode) : (this.head = this.head.nextNode);
+    this._size--;
+  }
   toString() {
     let linkedListString = this.head ? `( ${this.head.value} ) -> ` : " null ";
     if (!this.head) return linkedListString;
@@ -93,35 +124,6 @@ class LinkedList {
     }
     linkedListString += " null ";
     return linkedListString;
-  }
-  insertAt(value, index) {
-    if (index >= this.size || index < 0) throw new Error("Index out of range");
-    if (index == 0) this.prepend(value);
-    if (index == this.size - 1) this.append(value);
-    let count = 0;
-    let temp = this.head;
-    let previousNode;
-    while (count < index) {
-      previousNode = temp;
-      temp = temp.nextNode;
-      count++;
-    }
-    previousNode.nextNode = new Node(value, temp);
-    this.size++;
-  }
-  removeAt(index) {
-    if (index >= this.size || index < 0) throw new Error("Index out of range");
-    let temp = this.head;
-    let previousNode;
-    let count = 0;
-
-    while (count < index) {
-      previousNode = temp;
-      temp = temp.nextNode;
-      count++;
-    }
-    previousNode ? previousNode.nextNode = temp.nextNode : this.head = this.head.nextNode;
-    this.size--;
   }
 }
 
