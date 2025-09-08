@@ -5,4 +5,4 @@ class Node {
   }
 }
 
-export { Node };
+export { Node as default};

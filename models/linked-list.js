@@ -98,4 +98,4 @@ class LinkedList {
   removeAt(index) {}
 }
 
-export { LinkedList };
+export { LinkedList as default};
