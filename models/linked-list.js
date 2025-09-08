@@ -1,3 +1,4 @@
+import Node from "./node.js";
 class LinkedList {
   constructor(head = null) {
     this.head = head;
@@ -20,7 +21,7 @@ class LinkedList {
     this.head = new Node(value, temp);
     this.size++;
   }
-   get size() {
+  get size() {
     return this.size;
   }
   head() {
@@ -50,7 +51,7 @@ class LinkedList {
       return temp;
     }
   }
-   pop() {
+  pop() {
     if (!this.head.nextNode) {
       this.head = null;
       this.size = 0;
@@ -64,11 +65,11 @@ class LinkedList {
       this.size--;
     }
   }
-   contains(value) {
+  contains(value) {
     let temp = this.head;
     while (temp) {
       if (temp.value == value) return true;
-      temp = temp.nextNode;  
+      temp = temp.nextNode;
     }
     return false;
   }
@@ -76,23 +77,25 @@ class LinkedList {
     let temp = this.head;
     let count = 0;
     while (temp) {
-        if (temp.value == value) return count;
-        count++;
-        temp = temp.nextNode;
+      if (temp.value == value) return count;
+      count++;
+      temp = temp.nextNode;
     }
     return null;
   }
-    toString() {
-      let linkedListString = this.head ? `( ${this.head.value} ) -> ` : ' null ';
-      if (!this.head) return linkedListString;
-      let temp = this.head.nextNode;
+  toString() {
+    let linkedListString = this.head ? `( ${this.head.value} ) -> ` : " null ";
+    if (!this.head) return linkedListString;
+    let temp = this.head.nextNode;
     while (temp) {
-        linkedListString += `( ${temp.value} ) -> `;
-        temp = temp.nextNode;
+      linkedListString += `( ${temp.value} ) -> `;
+      temp = temp.nextNode;
     }
-    linkedListString += ' null ';
+    linkedListString += " null ";
     return linkedListString;
   }
-  insertAt(value,index){};
-  removeAt(index){};
+  insertAt(value, index) {}
+  removeAt(index) {}
 }
+
+export { LinkedList };
