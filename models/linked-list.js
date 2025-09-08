@@ -95,9 +95,9 @@ class LinkedList {
     return linkedListString;
   }
   insertAt(value, index) {
+    if (index >= this.size || index < 0) throw new Error("Index out of range");
     if (index == 0) this.prepend(value);
     if (index == this.size - 1) this.append(value);
-    if (index >= this.size || index < 0) throw new Error("Index out of range");
     let count = 0;
     let temp = this.head;
     let previousNode;
@@ -107,8 +107,22 @@ class LinkedList {
       count++;
     }
     previousNode.nextNode = new Node(value, temp);
+    this.size++;
   }
-  removeAt(index) {}
+  removeAt(index) {
+    if (index >= this.size || index < 0) throw new Error("Index out of range");
+    let temp = this.head;
+    let previousNode;
+    let count = 0;
+
+    while (count < index) {
+      previousNode = temp;
+      temp = temp.nextNode;
+      count++;
+    }
+    previousNode ? previousNode.nextNode = temp.nextNode : this.head = this.head.nextNode;
+    this.size--;
+  }
 }
 
 export { LinkedList as default };

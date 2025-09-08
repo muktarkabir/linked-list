@@ -5,11 +5,9 @@ list.append("fish");
 list.prepend("Tortoise");
 list.append("dragonfly");
 list.append("housefly");
-console.log(list.toString());
-// console.log(list.tail());
+console.log(list.tail());
 list.insertAt("snake", 1);
-console.log(list.toString());
 list.insertAt("puppy", 3);
+list.removeAt(1);
+list.removeAt(0);
 console.log(list.toString());
-
-
